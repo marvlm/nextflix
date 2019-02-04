@@ -9,7 +9,10 @@ class NextFlix extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NextFlix',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+        primaryColor: const Color(0xFF1C2429),
+        accentColor: const Color(0xFFff0000),
+        scaffoldBackgroundColor: const Color(0xFF1C2429),
       ),
       home: NextFlixHome(title: 'NextFlix'),
     );
@@ -25,7 +28,11 @@ class NextFlixHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.title),
+      elevation: 0.0,
+      title: Image.asset(
+          'images/NextFlix-logo-horizontal.png',
+          height: 40.0,
+        ),
       ),
       body: Center(
         child: Container(
