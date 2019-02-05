@@ -8,13 +8,13 @@ class FlixCarousel extends StatelessWidget {
     this.poster, 
     this.aspectRatio, 
     this.viewportFraction,
-    this.autoPlay}) : super(key: key);
+    this.autoPlay,
+    this.distortion,
+    this.cover}) : super(key: key);
 
-  final String movie;
-  final String poster;
-  final double aspectRatio;
-  final double viewportFraction;
-  final bool autoPlay;
+  final String movie, poster;
+  final double aspectRatio, viewportFraction;
+  final bool autoPlay, distortion, cover;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class FlixCarousel extends StatelessWidget {
                   children: <Widget>[
                     Image.network(
                       poster,
-                      fit: BoxFit.cover,
+                      fit: this.cover ? BoxFit.cover : BoxFit.contain,
                       width: 1000.0,
                     ),
                     Positioned(
@@ -52,8 +52,8 @@ class FlixCarousel extends StatelessWidget {
                         child: Text(
                           '$i $movie',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
+                            color: this.cover ? Colors.white : Colors.transparent,
+                            fontSize: this.cover ? 20.0 : 10.0,
                             letterSpacing: 1.0,
                           ),
                         ),
@@ -69,6 +69,7 @@ class FlixCarousel extends StatelessWidget {
       viewportFraction: viewportFraction,
       aspectRatio: aspectRatio,
       autoPlay: autoPlay,
+      distortion: distortion
     );
   }
 }
