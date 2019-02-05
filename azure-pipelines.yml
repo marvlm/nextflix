@@ -1,4 +1,4 @@
-# Flutter build
+# NextFlix Master build
 variables:
   projectDirectory: .
 
