@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nextflix_test1/src/ui/carousel.dart';
+import 'package:nextflix_test1/src/ui/widgets/carousel.dart';
 import 'package:nextflix_test1/src/models/movie_model.dart';
 import 'package:nextflix_test1/src/blocs/movies_bloc.dart';
 import 'package:nextflix_test1/src/models/tvshow_model.dart';
