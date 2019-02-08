@@ -52,7 +52,7 @@ class _Result {
   String _releaseDate;
 
   _Result(result) {
-    _popularity = result['popularity'];
+    _popularity = result['popularity'].toDouble();
     _voteCount = result['vote_count'];
     _video = result['video'];
     _posterPath = result['poster_path'];
@@ -65,7 +65,7 @@ class _Result {
       _genreIds.add(result['genre_ids'][i]);
     }   
     _title = result['title'];   
-    _voteAverage = result['vote_average'];                         
+    _voteAverage = result['vote_average'].toDouble();                         
     _overview = result['overview'];
     _releaseDate = result['release_date'];
   }

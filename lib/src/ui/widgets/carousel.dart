@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:nextflix_test1/src/ui/pages/flix_detail.dart';
 
 class FlixCarousel extends StatelessWidget {
-  FlixCarousel(
-      {Key key,
-      this.items,
-      this.cover,
-      this.isTv})
-      : super(key: key);
+  FlixCarousel({Key key, this.items, this.cover, this.isTv}) : super(key: key);
 
   final List items;
   final bool cover, isTv;
@@ -15,6 +11,22 @@ class FlixCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imageUrl = 'https://image.tmdb.org/t/p/w500';
+
+    _openDetailPage(item) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return MovieDetail(
+            title: this.isTv ? item.name : item.title,
+            posterUrl: '$imageUrl${item.backdropPath}',
+            description: item.overview,
+            releaseDate: this.isTv ? item.firstAirDate : item.releaseDate,
+            voteAverage: item.voteAverage.toString(),
+            movieId: item.id,
+          );
+        }),
+      );
+    }
 
     return CarouselSlider(
       items: items.map(
@@ -25,12 +37,16 @@ class FlixCarousel extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 child: Stack(
                   children: <Widget>[
-                    Image.network(
-                      this.cover
-                          ? '$imageUrl${i.backdropPath}'
-                          : '$imageUrl${i.posterPath}',
-                      fit: this.cover ? BoxFit.cover : BoxFit.contain,
-                      width: 1000.0,
+                    InkResponse(
+                      enableFeedback: true,
+                      onTap: () => _openDetailPage(i),
+                      child: Image.network(
+                        this.cover
+                            ? '$imageUrl${i.backdropPath}'
+                            : '$imageUrl${i.posterPath}',
+                        fit: this.cover ? BoxFit.cover : BoxFit.contain,
+                        width: 1000.0,
+                      ),
                     ),
                     Positioned(
                       bottom: 0.0,
