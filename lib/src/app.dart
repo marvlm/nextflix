@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nextflix_test1/src/ui/home.dart';
+import 'package:nextflix_test1/src/ui/pages/home.dart';
 
 class NextFlix extends StatelessWidget {
   @override
