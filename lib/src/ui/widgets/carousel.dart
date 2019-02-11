@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:nextflix_test1/src/ui/pages/flix_detail.dart';
 import 'package:nextflix_test1/src/blocs/flix_detail_bloc_provider.dart';
+import 'package:nextflix_test1/src/resources/config.dart';
 
 class FlixCarousel extends StatelessWidget {
   FlixCarousel({Key key, this.items, this.cover, this.isTv}) : super(key: key);
@@ -11,7 +12,8 @@ class FlixCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var imageUrl = 'https://image.tmdb.org/t/p/w500';
+
+    Config config = Config();
 
     _openDetailPage(flix) {
       Navigator.push(
@@ -41,8 +43,8 @@ class FlixCarousel extends StatelessWidget {
                       onTap: () => _openDetailPage(i),
                       child: Image.network(
                         this.cover
-                            ? '$imageUrl${i.backdropPath}'
-                            : '$imageUrl${i.posterPath}',
+                            ? '${config.imageUrl}${i.backdropPath}'
+                            : '${config.imageUrl}${i.posterPath}',
                         fit: this.cover ? BoxFit.cover : BoxFit.contain,
                         width: 1000.0,
                       ),

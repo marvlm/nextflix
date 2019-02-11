@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
+import 'package:nextflix_test1/src/resources/config.dart';
 
 class FlixTrailer extends StatelessWidget {
   final item;
@@ -9,7 +10,7 @@ class FlixTrailer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _youtubeKey = "AIzaSyBCfP7rIsyrywYhfuRJ4KUIDweeH7mbkSI";
+    Config config = Config(); 
 
     return Expanded(
       child: Stack(
@@ -54,7 +55,7 @@ class FlixTrailer extends StatelessWidget {
               padding: EdgeInsets.all(0.0),
               onPressed: () {
                 FlutterYoutube.playYoutubeVideoById(
-                    apiKey: _youtubeKey,
+                    apiKey: config.youtubeKey,
                     videoId: item.key,
                     fullScreen: true //default false
                     );

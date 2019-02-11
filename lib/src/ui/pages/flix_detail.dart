@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nextflix_test1/src/blocs/flix_detail_bloc_provider.dart';
 import 'package:nextflix_test1/src/models/trailer_model.dart';
 import 'package:nextflix_test1/src/ui/widgets/trailer.dart';
+import 'package:nextflix_test1/src/resources/config.dart';
 
 class FlixDetail extends StatefulWidget {
   final isTv;
@@ -21,12 +22,10 @@ class FlixDetail extends StatefulWidget {
 
 class FlixDetailState extends State<FlixDetail> {
   FlixDetailBloc bloc;
-  var imageUrl = 'https://image.tmdb.org/t/p/w500';  
+  Config config = Config(); 
 
   @override
   void didChangeDependencies() {
-    print('id');
-    print(widget.flix.id);
     bloc = FlixDetailBlocProvider.of(context);
     bloc.fetchMovieTrailersById(widget.flix.id);
     
@@ -48,7 +47,7 @@ class FlixDetailState extends State<FlixDetail> {
       elevation: 0.0,
       flexibleSpace: FlexibleSpaceBar(
         background: Image.network(
-          '$imageUrl${widget.flix.posterPath}',
+          '${config.imageUrl}${widget.flix.posterPath}',
           fit: BoxFit.fitWidth,
         ),
       ),
@@ -140,7 +139,7 @@ class FlixDetailState extends State<FlixDetail> {
       children: <Widget>[
         FlixTrailer(
           item: trailer.results[0],
-          videoImage: '$imageUrl${widget.flix.backdropPath}',
+          videoImage: '${config.imageUrl}${widget.flix.backdropPath}',
         ),
       ],
     );

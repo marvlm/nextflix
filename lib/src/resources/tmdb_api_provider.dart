@@ -4,17 +4,17 @@ import 'package:http/http.dart' show Client;
 import 'package:nextflix_test1/src/models/movie_model.dart';
 import 'package:nextflix_test1/src/models/tvshow_model.dart';
 import 'package:nextflix_test1/src/models/trailer_model.dart';
+import 'package:nextflix_test1/src/resources/config.dart';
 
 class TMDBApiProvider {
 
   Client client = Client();
-  final _apiUrl = 'http://api.themoviedb.org/3';
-  final _apiKey = '004cbaf19212094e32aa9ef6f6577f22';  
+  Config config = Config(); 
 
   Future<Movie> fetchNowPlayingMovieList() async {
 
     print("Movies Now Playing");
-    var requestUrl = "$_apiUrl/movie/now_playing?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/movie/now_playing?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -33,7 +33,7 @@ class TMDBApiProvider {
   Future<Movie> fetchPopularMovieList() async {
 
     print("Popular Movies");
-    var requestUrl = "$_apiUrl/movie/popular?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/movie/popular?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -52,7 +52,7 @@ class TMDBApiProvider {
   Future<Movie> fetchUpcomingMovieList() async {
 
     print("Upcoming Movies");
-    var requestUrl = "$_apiUrl/movie/upcoming?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/movie/upcoming?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -71,7 +71,7 @@ class TMDBApiProvider {
   Future<TVShow> fetchPopularTVShows() async {
 
     print("Popular TV Shows");
-    var requestUrl = "$_apiUrl/tv/popular?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/tv/popular?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -90,7 +90,7 @@ class TMDBApiProvider {
   Future<TVShow> fetchTrendingTVShows() async {
 
     print("Trending TV Shows");
-    var requestUrl = "$_apiUrl/trending/tv/week?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/trending/tv/week?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -109,7 +109,7 @@ class TMDBApiProvider {
   Future<TVShow> fetchTopRatedTVShows() async {
 
     print("Top Rated TV Shows");
-    var requestUrl = "$_apiUrl/tv/top_rated?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/tv/top_rated?api_key=${config.apiKey}";
 
     final response = await client
         .get(requestUrl);
@@ -128,7 +128,7 @@ class TMDBApiProvider {
   Future<TrailerModel> fetchMovieTrailer(int movieId) async {
 
     print("Trailers");
-    var requestUrl = "$_apiUrl/movie/$movieId/videos?api_key=$_apiKey";
+    var requestUrl = "${config.apiUrl}/movie/$movieId/videos?api_key=${config.apiKey}";
 
     print(requestUrl);
 
