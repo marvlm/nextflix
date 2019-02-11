@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:nextflix_test1/src/ui/pages/flix_detail.dart';
+import 'package:nextflix_test1/src/blocs/flix_detail_bloc_provider.dart';
 
 class FlixCarousel extends StatelessWidget {
   FlixCarousel({Key key, this.items, this.cover, this.isTv}) : super(key: key);
@@ -12,17 +13,21 @@ class FlixCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     var imageUrl = 'https://image.tmdb.org/t/p/w500';
 
-    _openDetailPage(item) {
+    _openDetailPage(flix) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return MovieDetail(
-            title: this.isTv ? item.name : item.title,
-            posterUrl: '$imageUrl${item.backdropPath}',
-            description: item.overview,
-            releaseDate: this.isTv ? item.firstAirDate : item.releaseDate,
-            voteAverage: item.voteAverage.toString(),
-            movieId: item.id,
+          return FlixDetailBlocProvider(
+            child: FlixDetail(
+              title: this.isTv ? flix.name : flix.title,
+              posterUrl: '$imageUrl${flix.posterPath}',
+              videoImage: '$imageUrl${flix.backdropPath}',
+              description: flix.overview,
+              releaseDate: this.isTv ? flix.firstAirDate : flix.releaseDate,
+              voteAverage: flix.voteAverage.toString(),
+              flixId: flix.id,
+              isTv: isTv,
+            ),
           );
         }),
       );
