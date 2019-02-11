@@ -4,6 +4,7 @@ import 'package:nextflix_test1/src/models/movie_model.dart';
 import 'package:nextflix_test1/src/blocs/movies_bloc.dart';
 import 'package:nextflix_test1/src/models/tvshow_model.dart';
 import 'package:nextflix_test1/src/blocs/tvshows_bloc.dart';
+import 'package:nextflix_test1/src/resources/config.dart';
 
 class NextFlixHome extends StatefulWidget {
   NextFlixHome({Key key, this.title}) : super(key: key);
@@ -17,6 +18,8 @@ class NextFlixHome extends StatefulWidget {
 class _NextFlixHomeState extends State<NextFlixHome> {
   AsyncSnapshot<TVShow> tvSnapshot;
   AsyncSnapshot<Movie> movieSnapshot;
+
+  Config config = new Config();
 
   @override
   void initState() {
@@ -43,7 +46,7 @@ class _NextFlixHomeState extends State<NextFlixHome> {
       return AppBar(
         elevation: 0.0,
         title: Image.asset(
-          'images/NextFlix-logo-horizontal.png',
+          config.logo,
           height: 40.0,
         ),
       );
