@@ -19,14 +19,8 @@ class FlixCarousel extends StatelessWidget {
         MaterialPageRoute(builder: (context) {
           return FlixDetailBlocProvider(
             child: FlixDetail(
-              title: this.isTv ? flix.name : flix.title,
-              posterUrl: '$imageUrl${flix.posterPath}',
-              videoImage: '$imageUrl${flix.backdropPath}',
-              description: flix.overview,
-              releaseDate: this.isTv ? flix.firstAirDate : flix.releaseDate,
-              voteAverage: flix.voteAverage.toString(),
-              flixId: flix.id,
               isTv: isTv,
+              flix: flix,
             ),
           );
         }),

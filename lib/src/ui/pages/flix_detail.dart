@@ -5,24 +5,12 @@ import 'package:nextflix_test1/src/models/trailer_model.dart';
 import 'package:nextflix_test1/src/ui/widgets/trailer.dart';
 
 class FlixDetail extends StatefulWidget {
-  final posterUrl;
-  final videoImage;
-  final description;
-  final releaseDate;
-  final String title;
-  final String voteAverage;
-  final int flixId;
   final isTv;
+  final dynamic flix;
 
   FlixDetail({
-    this.title,
-    this.posterUrl,
-    this.videoImage,
-    this.description,
-    this.releaseDate,
-    this.voteAverage,
-    this.flixId,
     this.isTv,
+    this.flix,
   });
 
   @override
@@ -33,11 +21,14 @@ class FlixDetail extends StatefulWidget {
 
 class FlixDetailState extends State<FlixDetail> {
   FlixDetailBloc bloc;
+  var imageUrl = 'https://image.tmdb.org/t/p/w500';  
 
   @override
   void didChangeDependencies() {
+    print('id');
+    print(widget.flix.id);
     bloc = FlixDetailBlocProvider.of(context);
-    bloc.fetchMovieTrailersById(widget.flixId);
+    bloc.fetchMovieTrailersById(widget.flix.id);
     
     super.didChangeDependencies();
   }
@@ -48,7 +39,8 @@ class FlixDetailState extends State<FlixDetail> {
     super.dispose();
   }
 
-  Widget _drawPoster() {
+  Widget _drawPoster() {    
+
     return SliverAppBar(
       expandedHeight: 190.0,
       floating: false,
@@ -56,7 +48,7 @@ class FlixDetailState extends State<FlixDetail> {
       elevation: 0.0,
       flexibleSpace: FlexibleSpaceBar(
         background: Image.network(
-          widget.posterUrl,
+          '$imageUrl${widget.flix.posterPath}',
           fit: BoxFit.fitWidth,
         ),
       ),
@@ -85,14 +77,14 @@ class FlixDetailState extends State<FlixDetail> {
         ),
         SizedBox(width: 2.0),
         Text(
-          widget.voteAverage,
+          widget.flix.voteAverage.toString(),
           style: TextStyle(
             fontSize: 18.0,
           ),
         ),
         SizedBox(width: 20.0),
         Text(
-          widget.releaseDate,
+          widget.isTv ? widget.flix.firstAirDate : widget.flix.releaseDate,
           style: TextStyle(
             fontSize: 18.0,
           ),
@@ -103,7 +95,7 @@ class FlixDetailState extends State<FlixDetail> {
 
   Widget _drawDescription() {
     return Text(
-      widget.description,
+      widget.flix.overview,
       maxLines: 6,
     );
   }
@@ -148,7 +140,7 @@ class FlixDetailState extends State<FlixDetail> {
       children: <Widget>[
         FlixTrailer(
           item: trailer.results[0],
-          videoImage: widget.videoImage,
+          videoImage: '$imageUrl${widget.flix.backdropPath}',
         ),
       ],
     );
@@ -164,6 +156,9 @@ class FlixDetailState extends State<FlixDetail> {
 
   @override
   Widget build(BuildContext context) {
+
+    var title = widget.isTv ? widget.flix.name : widget.flix.title;
+
     return Scaffold(
       body: SafeArea(
         top: false,
@@ -179,7 +174,7 @@ class FlixDetailState extends State<FlixDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                _drawTitle(widget.title),
+                _drawTitle(title),
                 _drawDateAverageRow(),
                 SizedBox(height: 14.0),
                 _drawDescription(),
