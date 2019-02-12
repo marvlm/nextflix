@@ -25,6 +25,7 @@ dependencies:
   flutter_youtube: "^1.1.4"
 
 dev_dependencies:
+  test: ^1.5.1
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.7.0"
