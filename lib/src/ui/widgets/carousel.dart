@@ -87,7 +87,7 @@ class FlixCarousel extends StatelessWidget {
       viewportFraction: this.cover ? 0.9 : 0.35,
       aspectRatio: this.cover ? 2.0 : 1.9,
       autoPlay: this.cover ? true : false,
-      distortion: this.cover ? true : false,
+      enlargeCenterPage: this.cover ? true : false,
     );
   }
 }
