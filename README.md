@@ -1,6 +1,9 @@
-# nextflix_test1
+# NextFlix App
 
-A new Flutter project.
+A movie app made with Flutter.
+
+Inline-style: 
+![alt text](https://pbs.twimg.com/media/D1e5bJfXcAUW7fT.jpg:large "NextFlix HomePage")
 
 ## Getting Started
 
