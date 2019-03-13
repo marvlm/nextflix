@@ -2,8 +2,7 @@
 
 A movie app made with Flutter.
 
-Inline-style: 
-![alt text](https://pbs.twimg.com/media/D1e5bJfXcAUW7fT.jpg:large "NextFlix HomePage")
+![alt text](https://pbs.twimg.com/media/D1e5bJfXcAUW7fT.jpg:large "NextFlix HomePage") {: height="36px" width="36px"}
 
 ## Getting Started
 
