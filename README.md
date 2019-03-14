@@ -2,7 +2,7 @@
 
 A movie app made with Flutter.
 
-![alt text](https://pbs.twimg.com/media/D1e5bJfXcAUW7fT.jpg =250x)
+![alt text](https://pbs.twimg.com/media/D1e5bJfXcAUW7fT.jpg =250px)
 
 ## Getting Started
 
